@@ -58,11 +58,10 @@ class Virall(object):
     def interpret(self, virall_model):
         for c in virall_model.commands:
             if c.__class__.__name__ == "CreateModel":
-                print("Creating the Model!")
+                print(c.compartment_definition.boolean_value)
                 # This will contain the code for generating equations once finished
-            elif c.__class__.__name__ == "Calculate":
-                print("Differentiating")
 
+            elif c.__class__.__name__ == "Calculate":
                 compartment_list = c.compartment.x
                 susceptible = compartment_list[0]
                 infected = compartment_list[1]
@@ -80,7 +79,6 @@ class Virall(object):
              
 
             elif c.__class__.__name__ == "Plot":
-                print("Plot")
                 attributes = dir(c)
                 # print(attributes)
                 compartment_colors = c.compartment_color.compartment_color

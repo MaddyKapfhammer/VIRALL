@@ -149,7 +149,7 @@ def run_differentials(compartment, t, beta, gamma, mu, vacc, specified_compartme
     equation_dictionary = create_equations(compartment_tables, compartment, gamma, mu, beta, vacc)
     differentials_list = combine_equations(equation_dictionary)
 
-    return differentials_list
+    return all(differentials_list)
 
 
 if __name__ == "__main__":
