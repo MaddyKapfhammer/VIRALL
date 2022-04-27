@@ -1,0 +1,36 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+140252386759200 -> 140252386759392 [label="commands:0" arrowtail=diamond dir=both]
+140252386759392 -> 140252386759536 [label="susceptible_definition" arrowtail=diamond dir=both]
+140252386759536[label="{:BooleanCompartment|+initial_compartment:list=['susceptible','infected','recovered','exposed','vaccinated','dead']\l+boolean_value:list=['True','True','True','False','False','False']\l}"]
+140252386759392 -> 140252386759632 [label="recovery_definition" arrowtail=diamond dir=both]
+140252386759632[label="{:BooleanRate|+initial_rate:list=['recovery','transmission','death','arrival','vaccination']\l+boolean_value:list=['True','True','False','False','False']\l}"]
+140252386759392[label="{SIR_model:CreateModel|}"]
+140252386759200 -> 140252386759440 [label="commands:1" arrowtail=diamond dir=both]
+140252386759440 -> 140252386759728 [label="population_size" arrowtail=diamond dir=both]
+140252386759728[label="{:PopulationSize|+x:int=1000\l}"]
+140252386759440 -> 140252386759824 [label="compartment" arrowtail=diamond dir=both]
+140252386759824[label="{:Population|+initial_compartment:list=['susceptible','infected','recovered']\l+x:list=[999,1,0]\l}"]
+140252386759440 -> 140252386759920 [label="disease_rates" arrowtail=diamond dir=both]
+140252386759920[label="{:Disease|+disease_characteristic:list=['transmission','recovery']\l+x:list=[0.2,0.7]\l}"]
+140252386759440 -> 140252386760016 [label="time_frame" arrowtail=diamond dir=both]
+140252386760016[label="{:Time|+x:int=50\l}"]
+140252386759440[label="{SIR_model:Calculate|}"]
+140252386759200 -> 140252386759488 [label="commands:2" arrowtail=diamond dir=both]
+140252386759488 -> 140252386760160 [label="compartment_color" arrowtail=diamond dir=both]
+140252386760160[label="{:CompartmentColor|+initial_compartment:list=['susceptible','infected','recovered']\l+compartment_color:list=['yellow','red','blue']\l}"]
+140252386759488[label="{SIR_model:Plot|+x_label:str='time'\l+y_label:str='population'\l}"]
+140252386759200[label="{:Program|}"]
+
+}

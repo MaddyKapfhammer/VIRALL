@@ -1,0 +1,80 @@
+Program:
+    'begin'
+        commands*=Command
+    'end'
+;
+
+Command:
+    CreateModel | Calculate | Plot
+;
+
+CreateModel:
+    'createModel' name=ID
+        'compartments'
+            compartment_definition=BooleanCompartment
+        'rates'
+            rate_definition=BooleanRate
+    'stop'
+;
+
+Calculate:
+    'calculate' name=ID
+        population_size = PopulationSize
+        compartment=Population
+        disease_rates=Disease
+        time_frame = Time
+    'stop'
+;
+
+Plot:
+    'plot' name=ID
+        compartment_color=CompartmentColor
+        'x_label' x_label=ID
+        'y_label' y_label=ID
+    'stop'
+;
+
+BooleanCompartment:
+    (initial_compartment=Compartment boolean_value=Boolean)+
+;
+
+BooleanRate:
+    (initial_rate=Rate boolean_value=Boolean)+
+;
+
+CompartmentColor:
+    (initial_compartment=Compartment compartment_color=Color)+
+;
+
+Color:
+    'red' | 'green' | 'blue' | 'yellow' | 'magenta' | 'cyan'
+;
+
+Compartment:
+    'susceptible' | 'infected' | 'recovered' | 'exposed' | 'vaccinated' | 'dead'
+; 
+
+Boolean:
+    'True' | 'False'
+;
+
+Rate:
+    'recovery' | 'transmission' | 'death' | 'arrival' | 'vaccination'
+;
+
+PopulationSize:
+    'population' x=INT
+;
+
+Time:
+    'days' x=INT
+;
+
+Population:
+    (initial_compartment=Compartment x=INT)+
+;
+
+Disease:
+    (disease_characteristic=Rate x=FLOAT)+
+;
+

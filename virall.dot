@@ -1,0 +1,55 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+93868022095776[ label="{Population|initial_compartment: Compartment\lassignment: Assignment\lx: INT\l}"]
+
+93868022303360[ label="{Disease|disease_characteristic: Characteristic\lassignment: Assignment\lx: FLOAT\l}"]
+
+93868022314432[ label="{CreateModel|model_type: ModelType\lsusceptible: Compartment\la: ID\linfected: Compartment\lb: ID\lrecovered: Compartment\lc: ID\lbeta: Characteristic\ld: ID\lgamma: Characteristic\le: ID\lD: Characteristic\lf: ID\l}"]
+
+93868022320560[ label="{Calculate|population_size: INT\ltime_frame: INT\l}"]
+
+93868022327216[ label="{Plot|susceptible_color: Color\linfected_color: Color\lrecovered_color: Color\l}"]
+
+
+
+93868022320560 -> 93868022314432[arrowtail=diamond, dir=both, headlabel="model "]
+93868022320560 -> 93868022303360[arrowtail=diamond, dir=both, headlabel="beta "]
+93868022320560 -> 93868022303360[arrowtail=diamond, dir=both, headlabel="D "]
+93868022320560 -> 93868022095776[arrowtail=diamond, dir=both, headlabel="susceptible "]
+93868022320560 -> 93868022095776[arrowtail=diamond, dir=both, headlabel="infected "]
+93868022320560 -> 93868022095776[arrowtail=diamond, dir=both, headlabel="Recovered "]
+93868022327216 -> 93868022320560[arrowtail=diamond, dir=both, headlabel="solved_equations "]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>Assignment</b></td><td>=</td>
+	</tr>
+	<tr>
+		<td><b>Characteristic</b></td><td>beta|D|gamma</td>
+	</tr>
+	<tr>
+		<td><b>Color</b></td><td>red|green|blue|yellow|magenta|cyan</td>
+	</tr>
+	<tr>
+		<td><b>Comment</b></td><td>\/\*(.|\n)*?\*\/|\/\/.*?$</td>
+	</tr>
+	<tr>
+		<td><b>Compartment</b></td><td>susceptible|infected|recovered|exposed</td>
+	</tr>
+	<tr>
+		<td><b>ModelType</b></td><td>SIR|SEIR</td>
+	</tr>
+</table> >]
+
+
+}
