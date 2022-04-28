@@ -5,7 +5,7 @@ description = ""
 authors = ["Maddy Kapfhammer <maddy.kapfhammer@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "3.8"
+python = "3.9"
 streamlit = "^1.8.1"
 matplotlib = "^3.5.1"
 textX = "^3.0.0"
