@@ -13,7 +13,7 @@ R,S,False,False,N/A
 R,I,False,True,gamma
 R,E,False,False,N/A
 R,V,False,False,N/A
-R,D,False,False,N/A
+R,D,True,False,mu
 E,S,False,True,beta
 E,I,False,True,beta
 E,R,True,False,gamma
@@ -29,3 +29,5 @@ D,I,False,True,mu
 D,R,True,False,gamma
 D,E,False,False,N/A
 D,V,True,False,vaccination
+Vect,S,False,True,beta
+Vect,I,False,False,N/A

@@ -51,7 +51,7 @@ Color:
 ;
 
 Compartment:
-    'susceptible' | 'infected' | 'recovered' | 'exposed' | 'vaccinated' | 'dead'
+    'susceptible' | 'infected' | 'recovered' | 'exposed' | 'vaccinated' | 'dead' | 'vector'
 ; 
 
 Boolean:
@@ -59,7 +59,7 @@ Boolean:
 ;
 
 Rate:
-    'recovery' | 'transmission' | 'death' | 'arrival' | 'vaccination'
+    'recovery' | 'transmission' | 'death' | 'vectransmission' | 'vaccination' | 'host'
 ;
 
 PopulationSize:

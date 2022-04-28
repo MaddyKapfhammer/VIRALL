@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "VIRALL"
+version = "1.0.0"
+description = "Who says everyone can't make disease models?"
+authors = ["Madelyn Kapfhammer"]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4.0"
+libcst = "^0.4.0"
+typer = {extras = ["all"], version = "^0.4.0"}
+prettyprint = "^0.1.5"
+streamlit = "^1.8.1"
+matplotlib = "^3.5.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

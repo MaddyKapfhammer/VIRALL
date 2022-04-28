@@ -1,7 +1,8 @@
 import streamlit as st
 import numpy as np
 from pathlib import Path
-import matplotlib.pyplot as plt
+import matplotlib as plt
+from matplotlib import pyplot as plt
 from virall_dsl import virall
 
 def read_markdown_file(file):
@@ -32,30 +33,26 @@ def virall_dsl_page():
     text = st.text_area("VIRALL Code Window", height=500, value = sample_code)
     st.subheader("Results")
 
-    # temp_file = virall.text_to_file(text)
-
-    # st.write(type(text))
-    differential_values, x_label, y_label, compartment_colors, compartment_list = virall.main(text)
-
+    t, differential_values, x_label, y_label, compartment_colors, compartment_list, used_compartments = virall.main(text)
 
     f, ax = plt.subplots(1, 1, figsize=(10, 4))
-    for x in range(0, (len(compartment_list))):
-        t = differential_values[0]
+    for x in range(0, len(used_compartments)):
         color = compartment_colors[x]
         compartment = compartment_list[x]
-        ax.plot(t, differential_values[x+1], color, alpha=0.7, linewidth=2, label=compartment)
-
-    ax.set_xlabel(x_label)
-    ax.set_ylabel(y_label)
-
-    ax.yaxis.set_tick_params(length=0)
-    ax.xaxis.set_tick_params(length=0)
-    ax.grid(b=True, which="major", c="w", lw=2, ls="-")
-    legend = ax.legend()
-    legend.get_frame().set_alpha(0.5)
-    for spine in ("top", "right", "bottom", "left"):
-        ax.spines[spine].set_visible(False)
     
+        ax.plot(t, differential_values[x], color, alpha=0.7, linewidth=2, label=compartment)
+
+        ax.set_xlabel(x_label)
+        ax.set_ylabel(y_label)
+
+        ax.yaxis.set_tick_params(length=0)
+        ax.xaxis.set_tick_params(length=0)
+        ax.grid(b=True, which="major", c="w", lw=2, ls="-")
+        legend = ax.legend()
+        legend.get_frame().set_alpha(0.5)
+        for spine in ("top", "right", "bottom", "left"):
+            ax.spines[spine].set_visible(False)
+        
     st.pyplot(f)
 
 

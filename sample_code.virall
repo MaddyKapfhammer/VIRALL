@@ -6,12 +6,13 @@ begin
             recovered True
             exposed False
             vaccinated False
-            vector False
+            vector True
         rates
             recovery True
             transmission True
             death True
-            vectransmission False
+            host True
+            vectransmission True
             vaccination False
     stop
 
@@ -20,9 +21,12 @@ begin
         susceptible 99
         infected 1
         recovered 0
+        vector 10
+        vectransmission 0.1
         transmission 0.5
         recovery 0.7
         death 0.4
+        host 25
         days 50
     stop
     
