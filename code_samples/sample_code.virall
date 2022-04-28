@@ -4,29 +4,27 @@ begin
             susceptible True
             infected True
             recovered True
-            exposed False
+            exposed True
             vaccinated False
-            vector True
+            vector False
         rates
             recovery True
             transmission True
             death True
-            host True
-            vectransmission True
+            host False
+            vectransmission False
             vaccination False
     stop
 
     calculate SIR_model
-        population 100
-        susceptible 99
+        population 1000
+        susceptible 900
         infected 1
         recovered 0
-        vector 10
-        vectransmission 0.1
+        exposed 999
         transmission 0.5
         recovery 0.7
         death 0.4
-        host 25
         days 50
     stop
     
@@ -34,6 +32,7 @@ begin
         susceptible yellow
         infected red
         recovered blue
+        exposed green
         x_label time
         y_label population
     stop

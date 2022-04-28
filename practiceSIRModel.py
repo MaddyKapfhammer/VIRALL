@@ -7,34 +7,32 @@ import matplotlib.pyplot as plt
 # import mpld3
 # mpld3.enable_notebook()
 
-def deriv(compartment, t, N, beta, gamma):
-    S, I, R = compartment
-    dSdt = -beta * S * I / N
-    dIdt = beta * S * I / N - gamma * I
-    dRdt = gamma * I
-    
-    print(dSdt, dIdt, dRdt)
-    return dSdt, dIdt, dRdt
+def deriv(compartment, t, N, beta, gamma, host, vector, mu):
+    S, I, R, Vect = compartment
+    dS = -(S * Vect * beta)
+    dI = (S * Vect * beta)
+    dR = (I * gamma) - (R * mu)
+    dVect = (host*vector) - (host * mu)
+    return dS, dI, dR, dVect
 
 
-def specify_compartments(N, beta, D, S0, I0, R0):
-    gamma = 1.0 / D
+def specify_compartments(N, beta, host, gamma, vector, mu, S0, I0, R0, Vec):
     t = np.linspace(0, 49, 50)
-    y0 = S0, I0, R0
-    ret = odeint(deriv, y0, t, args=(N, beta, gamma))
-    S, I, R = ret.T
+    y0 = S0, I0, R0, Vec
+    ret = odeint(deriv, y0, t, args=(N, beta, gamma, host, vector, mu))
+    S, I, R, Vec = ret.T
 
-    # print(S, I, R)
-    return t, S, I, R
+    return t, S, I, R, Vec
 
 
-def plotsir(t, S, I, R):
+def plotsir(t, S, I, R, Vec):
     f, ax = plt.subplots(1,1,figsize=(10,4))
-    ax.plot(t, S, 'b', alpha=0.7, linewidth=2, label='Susceptible')
-    ax.plot(t, I, 'y', alpha=0.7, linewidth=2, label='Infected')
-    ax.plot(t, R, 'g', alpha=0.7, linewidth=2, label='Recovered')
+    ax.plot(t, S, 'blue', alpha=0.7, linewidth=2, label='Susceptible')
+    ax.plot(t, I, 'green', alpha=0.7, linewidth=2, label='Infected')
+    ax.plot(t, R, 'red', alpha=0.7, linewidth=2, label='Recovered')
+    ax.plot(t, Vec, 'yellow', alpha=0.7, linewidth=2, label="Vector Population")
 
-    ax.set_xlabel('Time (days)')
+    ax.set_xlabel('Time')
 
     ax.yaxis.set_tick_params(length=0)
     ax.xaxis.set_tick_params(length=0)
@@ -48,14 +46,18 @@ def plotsir(t, S, I, R):
 
 
 if __name__ == "__main__":
-    N = int(input("Enter size of population: "))
-    beta = int(input("How many people does an infected individual infect per day?: "))
-    D = int(input("How long does infection last?: "))
+    N = 1000
+    S0 = 9000
+    I0 = 200
+    R0 = 300
+    Vec = 50
 
-    S0 = int(input("Enter initial susceptible population: "))
-    I0 = int(input("Enter initial infected population: "))
-    R0 = int(input("Enter initial recovered population: "))
+    beta = 4.29
+    gamma = 0.121
+    host = 190000
+    vector_transmission = 0.4
+    mu = 4.83
 
-    t, S, I, R = specify_compartments(N, beta, D, S0, I0, R0)
+    t, S, I, R, Vector = specify_compartments(N, beta, gamma, host, vector_transmission, mu, S0, I0, R0, Vec)
     
-    plotsir(t, S, I, R)
+    plotsir(t, S, I, R, Vector)
