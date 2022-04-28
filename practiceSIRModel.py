@@ -13,7 +13,7 @@ def deriv(compartment, t, N, beta, gamma):
     dIdt = beta * S * I / N - gamma * I
     dRdt = gamma * I
     
-    print(dSdt)
+    print(dSdt, dIdt, dRdt)
     return dSdt, dIdt, dRdt
 
 

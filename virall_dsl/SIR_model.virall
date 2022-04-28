@@ -16,8 +16,8 @@ begin
     stop
 
     calculate SIR_model
-        population 10000
-        susceptible 9999
+        population 100
+        susceptible 99
         infected 1
         recovered 0
         transmission 0.5

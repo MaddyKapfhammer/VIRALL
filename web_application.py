@@ -35,12 +35,15 @@ def virall_dsl_page():
     # temp_file = virall.text_to_file(text)
 
     # st.write(type(text))
-    t, S, I, R, x_label, y_label, susceptible_color, infected_color, recovered_color = virall.main(text)
+    differential_values, x_label, y_label, compartment_colors, compartment_list = virall.main(text)
+
 
     f, ax = plt.subplots(1, 1, figsize=(10, 4))
-    ax.plot(t, S, susceptible_color, alpha=0.7, linewidth=2, label="Susceptible")
-    ax.plot(t, I, infected_color, alpha=0.7, linewidth=2, label="Infected")
-    ax.plot(t, R, recovered_color, alpha=0.7, linewidth=2, label="Recovered")
+    for x in range(0, (len(compartment_list))):
+        t = differential_values[0]
+        color = compartment_colors[x]
+        compartment = compartment_list[x]
+        ax.plot(t, differential_values[x+1], color, alpha=0.7, linewidth=2, label=compartment)
 
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
