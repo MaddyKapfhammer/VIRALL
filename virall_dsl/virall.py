@@ -3,9 +3,6 @@ from textx import metamodel_from_file
 from textx.export import metamodel_export, model_export
 import numpy as np
 import matplotlib.pyplot as plt
-import tempfile
-import io
-import base64
 
 
 def define_equations(compartment, t, beta, gamma, mu, vacc, vector, host, compartment_dict):
