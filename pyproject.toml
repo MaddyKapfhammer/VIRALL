@@ -5,11 +5,9 @@ description = ""
 authors = ["Maddy Kapfhammer <maddy.kapfhammer@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
+python = ">=3.6,<3.11"
 streamlit = "^1.8.1"
 matplotlib = "^3.5.1"
-numpy = "^1.22.3"
-scipy = "^1.8.0"
 textX = "^3.0.0"
 
 [tool.poetry.dev-dependencies]

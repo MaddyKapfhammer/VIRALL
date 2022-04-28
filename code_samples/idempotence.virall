@@ -1,0 +1,36 @@
+
+begin
+    createModel SIR_model
+        compartments
+            susceptible True
+            infected True
+            recovered True
+            exposed False
+            vaccinated False
+            vector False
+        rates
+            recovery True
+            transmission True
+            death False
+            vectransmission False
+            vaccination False
+    stop
+
+    calculate SIR_model
+        population 20000001
+        susceptible 20000000
+        infected 1
+        recovered 0
+        transmission 0.88
+        recovery 0.98
+        days 50
+    stop
+    
+    plot SIR_model
+        susceptible yellow
+        infected red
+        recovered blue
+        x_label time
+        y_label population
+    stop
+end
